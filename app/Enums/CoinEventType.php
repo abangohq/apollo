@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Enums;
+
+enum CoinEventType: string
+{
+   case UNCONFIRMED = 'ADDRESS_COINS_TRANSACTION_UNCONFIRMED';
+   case CONFIRMED = 'ADDRESS_COINS_TRANSACTION_CONFIRMED';
+   case WALLET = 'WALLET_AS_A_SERVICE';
+}

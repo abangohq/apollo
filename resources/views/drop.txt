@@ -1,0 +1,174 @@
+return [
+            'title' => "",
+            'message' => ""
+         ];
+
+            Route::post('/edit-profile-img', [ProfileController::class, 'editProfileImg']);
+
+
+// [Withdrawal::class, DataTopUp::class, AirtimeTopUp::class], function($q) {
+      // ->when(in_array($request->type, $types))->where('transaction_type', $request->type)
+      // ->when($request->reversal)->where('is_reversal', true)
+
+
+
+ /**
+    * Handle pending unconfirmed crypto transaction
+    */
+   public function unconfirmHook()
+   {
+      DB::beginTransaction();
+      try {
+         CryptoTransaction::create($this->cryptoTranxPayload($wallet, $payload, $dollarPrice));
+         DB::commit();
+      } catch (\Throwable $th) {
+         DB::rollBack();
+         throw $th;
+      }
+   }
+
+   /**
+    * Handle confirmed crypto transaction
+    */
+   public function confirmHook()
+   {
+      DB::beginTransaction();
+      try {
+         $status =
+
+            $this->credit($tranx->user_id, $tranx->payout_amount);
+
+         WalletTransaction::create($tranxPayload);
+
+         DB::commit();
+      } catch (\Throwable $th) {
+         DB::rollBack();
+         throw $th;
+      }
+
+      // if ($payload->event == CoinEventType::UNCONFIRMED) {
+      //    $this->unconfirmHook(Status::PENDING);
+      //    // return;
+      // }
+
+      // if ($payload->event == CoinEventType::CONFIRMED) {
+      //    $this->confirmHook(Status::SUCCESSFUL);
+      // }
+   }
+
+
+
+
+     /**
+    * Subscribe to callback event for unconfirmed transaction
+    */
+   public function unconfirmedSubscription(string $address)
+   {
+      $net = app()->environment('local') ? 'testnet' : 'mainnet';
+      $chain = Tranx::BITCOIN->value;
+
+      $this->http()->post("blockchain-events/{$chain}/{$net}/subscriptions/address-coins-transactions-unconfirmed", [
+         "data" =>  [
+            "item" => [
+               "address" => $address,
+               "allowDuplicates" => false,
+               "callbackSecretKey" => config('services.cryptoapis.callback_secret'),
+               "callbackUrl" => config('services.cryptoapis.callback'),
+            ]
+         ]
+      ])->throw()->object();
+
+      return $this;
+   }
+
+
+
+
+
+Route::get('sync-wallet', function () {
+    // WalletPubSub::dispatch();
+
+    /**
+     * @var \App\Services\Crypto\CryptoApisService
+     */
+    // $service = app(CryptoApisService::class);
+
+    // $subs = $service->http()->get("/blockchain-events/bitcoin/mainnet/subscriptions?limit=50")->object();
+
+    // collect($subs->data->items)->each(function ($item) use ($service) {
+    //     WalletPubSub::dispatch($item->referenceId);
+    // });
+
+    $subs = $service->http()->get("/blockchain-events/bitcoin/mainnet/subscriptions?limit=50")->object();
+    return response()->json($subs);
+
+    // CryptoWallet::query()->where('chain', Tranx::BTC)->chunkById(50, function ($wallets) use ($service) {
+    //     $wallets->each(function ($wallet) use ($service) {
+    //         WalletPubSub::dispatch($wallet->address);
+    //     });
+    // });
+});
+
+
+
+
+try {
+            $service->confirmedSubscription($this->walletAddress);
+        } catch (\Throwable $th) {
+            logger($th);
+        }
+
+
+
+           $service->http()->timeout(800)->delete("/blockchain-events/bitcoin/mainnet/subscriptions/{$this->walletAddress}")->object();
+
+
+
+
+
+
+
+
+
+
+           {
+   "apiVersion": "2023-04-25",
+   "requestId": "601c1710034ed6d407996b30",
+   "context": "yourExampleString",
+   "data": {
+      "limit": 50,
+      "offset": 0,
+      "total": 100,
+      "items": [
+         {
+            "address": "0xe2b5f5e885a268e4b6faae53f99a663f3bb3e036",
+            "confirmedBalance": {
+               "amount": "0.0101",
+               "unit": "ETH"
+            },
+            "createdTimestamp": 346658753,
+            "fungibleTokens": [
+               {
+                  "amount": "0.254",
+                  "identifier": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                  "name": "Tether USD",
+                  "symbol": "USDT",
+                  "tokenDecimals": 6,
+                  "type": "ERC-20"
+               }
+            ],
+            "index": "1",
+            "label": "yourStringHere",
+            "nonFungibleTokens": [
+               {
+                  "identifier": "0x90ca8a3eb2574f937f514749ce619fdcca187d45",
+                  "name": "Tether",
+                  "symbol": "ENS",
+                  "tokenId": "0x000000000000000000000000000000000000000000000000000000000000195b",
+                  "type": "ERC-721"
+               }
+            ]
+         }
+      ]
+   }
+}
