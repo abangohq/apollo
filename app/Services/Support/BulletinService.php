@@ -49,18 +49,17 @@ class BulletinService
     */
    public function allUsers()
    {
-      User::query()->chunkById(100, function ($users) {
+      $success = 0; $failed = 0;
+      User::query()->chunkById(100, function ($users) use (&$success, &$failed) {
          $tokens = $users->pluck('device_token')->filter()->toArray();
+         if (empty($tokens)) return;
 
          $message = CloudMessage::new()->withNotification($this->bulletin);
-
          $sendReport = $this->messaging->sendMulticast($message, $tokens);
-
-         $this->notification->update([
-            "successful" => $sendReport->successes()->count(),
-            "failed" => $sendReport->failures()->count(),
-         ]);
+         $success += $sendReport->successes()->count();
+         $failed += $sendReport->failures()->count();
       });
+      $this->notification->update(["successful" => $success, "failed" => $failed]);
    }
 
    /**
@@ -68,20 +67,19 @@ class BulletinService
     */
    public function activeUsers()
    {
+      $success = 0; $failed = 0;
       User::join('crypto_transactions', 'users.id', 'crypto_transactions.user_id')
          ->where('crypto_transactions.created_at', '>', now()->subDays(30)->endOfDay())
-         ->chunkById(100, function ($users) {
+         ->chunkById(100, function ($users) use (&$success, &$failed) {
             $tokens = $users->pluck('device_token')->filter()->toArray();
+            if (empty($tokens)) return;
 
             $message = CloudMessage::new()->withNotification($this->bulletin);
-
             $sendReport = $this->messaging->sendMulticast($message, $tokens);
-
-            $this->notification->update([
-               "successful" => $sendReport->successes()->count(),
-               "failed" => $sendReport->failures()->count(),
-            ]);
+            $success += $sendReport->successes()->count();
+            $failed += $sendReport->failures()->count();
          });
+      $this->notification->update(["successful" => $success, "failed" => $failed]);
    }
 
    /**
@@ -89,20 +87,19 @@ class BulletinService
     */
    public function inactiveUsers()
    {
+      $success = 0; $failed = 0;
       User::join('crypto_transactions', 'users.id', 'crypto_transactions.user_id')
          ->where('crypto_transactions.created_at', '<', now()->subDays(30)->endOfDay())
-         ->chunkById(100, function ($users) {
+         ->chunkById(100, function ($users) use (&$success, &$failed) {
             $tokens = $users->pluck('device_token')->filter()->toArray();
+            if (empty($tokens)) return;
 
             $message = CloudMessage::new()->withNotification($this->bulletin);
-
             $sendReport = $this->messaging->sendMulticast($message, $tokens);
-
-            $this->notification->update([
-               "successful" => $sendReport->successes()->count(),
-               "failed" => $sendReport->failures()->count(),
-            ]);
+            $success += $sendReport->successes()->count();
+            $failed += $sendReport->failures()->count();
          });
+      $this->notification->update(["successful" => $success, "failed" => $failed]);
    }
 
    /**
@@ -110,19 +107,18 @@ class BulletinService
     */
    public function recentUsers()
    {
+      $success = 0; $failed = 0;
       User::where('created_at', '>', now()->subDays(30)->endOfDay())
-         ->chunkById(100, function ($users) {
+         ->chunkById(100, function ($users) use (&$success, &$failed) {
             $tokens = $users->pluck('device_token')->filter()->toArray();
+            if (empty($tokens)) return;
 
             $message = CloudMessage::new()->withNotification($this->bulletin);
-
             $sendReport = $this->messaging->sendMulticast($message, $tokens);
-
-            $this->notification->update([
-               "successful" => $sendReport->successes()->count(),
-               "failed" => $sendReport->failures()->count(),
-            ]);
+            $success += $sendReport->successes()->count();
+            $failed += $sendReport->failures()->count();
          });
+      $this->notification->update(["successful" => $success, "failed" => $failed]);
    }
 
    /**
@@ -133,16 +129,13 @@ class BulletinService
       $token = User::query()->where('email', $userMail)->value('device_token');
 
       if (empty($token)) {
+         $this->notification->increment('failed');
          return;
       }
 
       $message = CloudMessage::withTarget('token', $token)->withNotification($this->bulletin);
 
-      $sendReport = $this->messaging->send($message);
-
-      $this->notification->update([
-         "successful" => $sendReport->successes()->count(),
-         "failed" => $sendReport->failures()->count(),
-      ]);
+      $this->messaging->send($message);
+      $this->notification->increment('successful');
    }
 }
