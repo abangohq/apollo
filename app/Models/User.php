@@ -290,6 +290,16 @@ class User extends Authenticatable
         return $this->hasMany(Kyc::class);
     }
 
+    public function trades():
+    {
+        return $this->hasMany(Trade::class);
+    }
+
+    public function tradeApprovals()
+    {
+        return $this->hasManyThrough(Trade::class, TradeApproval::class, 'assigned_to', 'id', 'id', 'trade_id');
+    }
+
     /**
      * Get the user withdraws
      */

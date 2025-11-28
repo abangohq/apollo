@@ -171,14 +171,6 @@ class User extends Resource
                 // Tab::make('Bills', [
                 //     HasMany::make('Bills', 'bills', Transaction::class),
                 // ]),
-                Tab::make('Virtual Wallet', [
-                    Text::make('Bank Name')->displayUsing(fn () => $this->resource?->virtual_wallet?->bank_name)
-                        ->onlyOnDetail(),
-                    Text::make('Account Name')->displayUsing(fn () => $this->resource?->virtual_wallet?->account_name)
-                    ->onlyOnDetail(),
-                    Text::make('Account Number')->displayUsing(fn () => $this->resource?->virtual_wallet?->account_number)
-                    ->onlyOnDetail(),
-                ]),
             ]),
         ];
     }
