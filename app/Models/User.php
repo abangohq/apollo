@@ -290,7 +290,7 @@ class User extends Authenticatable
         return $this->hasMany(Kyc::class);
     }
 
-    public function trades():
+    public function trades()
     {
         return $this->hasMany(Trade::class);
     }
