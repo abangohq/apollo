@@ -108,6 +108,7 @@ class Withdrawal extends Resource
                 ->map([
                     'successful' => 'success',
                     'pending' => 'warning',
+                    'failed' => 'danger',
                     'rejected' => 'danger',
                 ])
                  ->readonly(),
