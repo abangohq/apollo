@@ -111,7 +111,7 @@ class BannedUser extends Resource
             })->readonly()->displayUsing(fn ($d) => $d?->format('F j Y h:i A')),
 
             Money::make('Balance', 'NGN', function () {
-                $wallet = $this->wallets()->where('currency', 'NGN')->first();
+                $wallet = $this->wallets()->where('wallet_currency', 'NGN')->first();
 
                 return $wallet ? $wallet->amount : 0;
             })->storedInMinorUnits()->readonly(),

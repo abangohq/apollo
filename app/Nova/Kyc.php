@@ -94,6 +94,7 @@ class Kyc extends Resource
                     'completed' => 'success',
                     'pending' => 'warning',
                     'failed' => 'danger',
+                    'abandoned' => 'danger',
                 ]),
 
             DateTime::make('Date', 'created_at')->readonly()->displayUsing(fn ($d) => $d->format('F j Y h:i A')),
