@@ -8,7 +8,7 @@ use App\Nova\Actions\BulkUpdatePendingTradeNovaAction;
 use App\Nova\Actions\RejectTrade;
 use App\Nova\Filters\TradeDuplicateImageStatusFilter;
 use App\Nova\Traits\TradeResourceCustomFieldTrait;
-use Faradele\Files\Files;
+use App\Nova\Fields\Files;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -220,8 +220,8 @@ class Trade extends Resource
             // * Do not show on preview modal for better access control.
             $this->getAttachmentsField(),
 
-            HasMany::make('Media View Logs')
-                ->collapsedByDefault(),
+            // HasMany::make('Media View Logs')
+            //     ->collapsedByDefault(),
         ];
     }
 

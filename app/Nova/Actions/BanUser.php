@@ -2,7 +2,7 @@
 
 namespace App\Nova\Actions;
 
-use App\Notifications\SendFirebasePushNotification;
+use App\Notifications\User\AccountSuspensionNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
@@ -31,20 +31,11 @@ class BanUser extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach ($models as $user) {
-            $user->ban([
-                'comment' => $fields->get('comment'),
-                'expired_at' => $fields->get('expired_at'),
-            ]);
+            $user->update(["status" => 'inactive']);
+            $user->notify(new AccountSuspensionNotification('inactive'));
         }
 
-        $user->notify(
-            new SendFirebasePushNotification(
-                'Account Restriction',
-                "Your account has been restricted for {$fields->get('comment')}"
-            )
-        );
-
-        return Action::message("$user->name has been banned!");
+        return Action::message('User disabled successfully!');
     }
 
     /**

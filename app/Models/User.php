@@ -242,6 +242,11 @@ class User extends Authenticatable
         return $this->hasMany(MeterTopUp::class);
     }
 
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
+
     public function banks()
     {
         return $this->hasMany(BankAccount::class, 'user_id');

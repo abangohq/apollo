@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a72af8239567c041adb4e5e7e3bed49b",
+    "content-hash": "4c246b4d9bc3d1e0c341aef1b7bd73a1",
     "packages": [
         {
             "name": "beste/clock",
@@ -928,6 +928,175 @@
             "time": "2022-10-27T11:44:00+00:00"
         },
         {
+            "name": "digital-creative/nova-dashboard",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcasia/nova-dashboard.git",
+                "reference": "f87619a493d1167fcb7c30fb169ec6c41265f600"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcasia/nova-dashboard/zipball/f87619a493d1167fcb7c30fb169ec6c41265f600",
+                "reference": "f87619a493d1167fcb7c30fb169ec6c41265f600",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.28.0",
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalCreative\\NovaDashboard\\NovaDashboardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DigitalCreative\\NovaDashboard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The missing dashboard for nova.",
+            "keywords": [
+                "Flexible",
+                "dashboard",
+                "laravel",
+                "nova",
+                "widgets"
+            ],
+            "support": {
+                "issues": "https://github.com/dcasia/nova-dashboard/issues",
+                "source": "https://github.com/dcasia/nova-dashboard/tree/v1.1.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/milewski",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-28T03:45:31+00:00"
+        },
+        {
+            "name": "digital-creative/nova-mega-filter",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcasia/nova-mega-filter.git",
+                "reference": "592ff7017634086e2de0ff1bb4ea98a365b3a707"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcasia/nova-mega-filter/zipball/592ff7017634086e2de0ff1bb4ea98a365b3a707",
+                "reference": "592ff7017634086e2de0ff1bb4ea98a365b3a707",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalCreative\\MegaFilter\\MegaFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DigitalCreative\\MegaFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Milewski"
+                }
+            ],
+            "description": "Allows you to control the columns and filters shown on your nova resources.",
+            "keywords": [
+                "big-filter",
+                "columns",
+                "filter",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/dcasia/nova-mega-filter/issues",
+                "source": "https://github.com/dcasia/nova-mega-filter/tree/v1.0.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/milewski",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-20T04:49:50+00:00"
+        },
+        {
+            "name": "digital-creative/nova-pill-filter",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcasia/nova-pill-filter.git",
+                "reference": "169c8a67a9faea64588035b73b473f0734dfe887"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcasia/nova-pill-filter/zipball/169c8a67a9faea64588035b73b473f0734dfe887",
+                "reference": "169c8a67a9faea64588035b73b473f0734dfe887",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalCreative\\PillFilter\\PillFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DigitalCreative\\PillFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Milewski"
+                }
+            ],
+            "description": "A Laravel Nova filter that renders into clickable pills.",
+            "keywords": [
+                "filter",
+                "laravel",
+                "nova",
+                "pill",
+                "tags"
+            ],
+            "support": {
+                "issues": "https://github.com/dcasia/nova-pill-filter/issues",
+                "source": "https://github.com/dcasia/nova-pill-filter/tree/v1.0.1"
+            },
+            "time": "2023-10-02T07:49:17+00:00"
+        },
+        {
             "name": "doctrine/dbal",
             "version": "3.10.3",
             "source": {
@@ -1477,6 +1646,67 @@
             "time": "2023-10-06T06:47:41+00:00"
         },
         {
+            "name": "eminiarts/nova-tabs",
+            "version": "2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eminiarts/nova-tabs.git",
+                "reference": "c9091cf6e8646dfb07cae5dd7fa7ba718f6e1433"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eminiarts/nova-tabs/zipball/c9091cf6e8646dfb07cae5dd7fa7ba718f6e1433",
+                "reference": "c9091cf6e8646dfb07cae5dd7fa7ba718f6e1433",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/nova": "^4.12",
+                "nova-kit/nova-packages-tool": "^1.3",
+                "php": "^7.4|^8"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2",
+                "orchestra/testbench": "^6",
+                "roave/security-advisories": "dev-latest"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Eminiarts\\Tabs\\TabsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Eminiarts\\Tabs\\": "src/",
+                    "Eminiarts\\Tabs\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emini Arts GmbH",
+                    "email": "support@eminiarts.ch",
+                    "homepage": "https://eminiarts.ch"
+                }
+            ],
+            "description": "Laravel Nova - Tabs.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/eminiarts/nova-tabs/issues",
+                "source": "https://github.com/eminiarts/nova-tabs/tree/2.2.3"
+            },
+            "time": "2022-10-25T19:58:02+00:00"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.18.0",
             "source": {
@@ -1536,6 +1766,109 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.18.0"
             },
             "time": "2024-11-01T03:51:45+00:00"
+        },
+        {
+            "name": "faradele/nova-files-preview-field",
+            "version": "dev-nova-4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/faradele/nova-files-preview-field.git",
+                "reference": "bd2ec9b107fb01309d334bce8b5bd57b69113992"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/faradele/nova-files-preview-field/zipball/bd2ec9b107fb01309d334bce8b5bd57b69113992",
+                "reference": "bd2ec9b107fb01309d334bce8b5bd57b69113992",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "laravel/framework": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "laravel/nova": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Faradele\\Files\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faradele\\Files\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oladele F",
+                    "email": "farayolaoladele@gmail.com"
+                }
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "source": "https://github.com/faradele/nova-files-preview-field/tree/nova-4",
+                "issues": "https://github.com/faradele/nova-files-preview-field/issues"
+            },
+            "time": "2025-04-21T13:30:52+00:00"
+        },
+        {
+            "name": "faradele/nova-gctn-giftcard-rates-editor",
+            "version": "dev-nova-4",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:faradele/nova-gctn-giftcard-rates-editor.git",
+                "reference": "a1ed82348287df6cbb4f892af579b8c2482ffb39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/faradele/nova-gctn-giftcard-rates-editor/zipball/a1ed82348287df6cbb4f892af579b8c2482ffb39",
+                "reference": "a1ed82348287df6cbb4f892af579b8c2482ffb39",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "laravel/framework": "^8.65",
+                "laravel/nova": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Faradele\\GctnGiftcardRatesEditor\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faradele\\GctnGiftcardRatesEditor\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "source": "https://github.com/faradele/nova-gctn-giftcard-rates-editor/tree/nova-4",
+                "issues": "https://github.com/faradele/nova-gctn-giftcard-rates-editor/issues"
+            },
+            "time": "2024-05-19T09:19:18+00:00"
         },
         {
             "name": "fig/http-message-util",
@@ -5360,6 +5693,60 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.2"
             },
             "time": "2024-03-05T20:51:40+00:00"
+        },
+        {
+            "name": "nova-kit/nova-packages-tool",
+            "version": "v1.17.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nova-kit/nova-packages-tool.git",
+                "reference": "9d748ba50bfd708d132da01a76b605bdece01305"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nova-kit/nova-packages-tool/zipball/9d748ba50bfd708d132da01a76b605bdece01305",
+                "reference": "9d748ba50bfd708d132da01a76b605bdece01305",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": ">=4.35.5 <4.36.0",
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "nova-kit/nova-devtool": "^1.3",
+                "orchestra/testbench": "^6.35 || ^7.29 || ^8.9 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaKit\\NovaPackagesTool\\LaravelServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-develop": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaKit\\NovaPackagesTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mior Muhammad Zaki",
+                    "email": "crynobone@gmail.com"
+                }
+            ],
+            "description": "Tool for Laravel Nova Packages Development",
+            "support": {
+                "source": "https://github.com/nova-kit/nova-packages-tool/tree/v1.17.4"
+            },
+            "time": "2024-11-22T11:45:29+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -13433,8 +13820,11 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "faradele/nova-files-preview-field": 20,
+        "faradele/nova-gctn-giftcard-rates-editor": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

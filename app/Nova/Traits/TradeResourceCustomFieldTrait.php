@@ -2,7 +2,7 @@
 
 namespace App\Nova\Traits;
 
-use Faradele\Files\Files;
+use App\Nova\Fields\Files;
 use Illuminate\Support\Facades\App;
 use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Heading;

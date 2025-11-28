@@ -9,6 +9,12 @@
         "block_io-php/block_io-php": "^1.1",
         "cloudinary-labs/cloudinary-laravel": "^2.1",
         "composer/semver": "^3.4",
+        "digital-creative/nova-dashboard": "^1.1",
+        "digital-creative/nova-mega-filter": "^1.0",
+        "digital-creative/nova-pill-filter": "^1.0",
+        "eminiarts/nova-tabs": "*",
+        "faradele/nova-files-preview-field": "dev-nova-4",
+        "faradele/nova-gctn-giftcard-rates-editor": "dev-nova-4",
         "firebase/php-jwt": "^6.11",
         "gg-innovative/larafirebase": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -81,12 +87,20 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": {
         "nova": {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        "rate-editor": {
+            "type": "vcs",
+            "url": "git@github.com:faradele/nova-gctn-giftcard-rates-editor.git"
+        },
+        "files-preview": {
+            "type": "vcs",
+            "url": "git@github.com:faradele/nova-files-preview-field.git"
         }
     }
 }
