@@ -85,8 +85,9 @@ class Withdrawal extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->hideFromIndex()->sortable(),
-            BelongsTo::make('User', 'user', User::class)->readonly(),
+            BelongsTo::make('Username', 'user', User::class)
+                ->readonly()
+                ->displayUsing(fn ($user) => $user->username),
             Money::make('Amount', 'NGN')
                 ->locale('en')
                 ->readonly()

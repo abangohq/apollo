@@ -6,19 +6,9 @@ use App\Nova\Actions\CreditWallet;
 use App\Nova\Actions\DebitWallet;
 use App\Nova\Actions\UnbanUser;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Gravatar;
-use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Panel;
-use Vyuldashev\NovaMoneyField\Money;
 
-class BannedUser extends Resource
+class BannedUser extends User
 {
     /**
      * The model the resource corresponds to.
@@ -45,9 +35,7 @@ class BannedUser extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query = parent::indexQuery($request, $query);
-
-        return $query->where('status', 'inactive');
+        return parent::indexQuery($request, $query)->where('status', 'inactive');
     }
 
     public static function authorizedToCreate(Request $request)
@@ -70,99 +58,7 @@ class BannedUser extends Resource
         return false;
     }
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @return array
-     */
-    public function fields(NovaRequest $request)
-    {
-        return [
-            ID::make()->sortable()->hideFromIndex(),
-
-            Gravatar::make()->maxWidth(50),
-
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Username')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Phone')
-                ->sortable()
-                ->rules('required', 'max:11'),
-
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Boolean::make('Email Verified', function () {
-                return $this->email_verified_at !== null;
-            })->onlyOnIndex(),
-
-            DateTime::make('Date Joined', 'created_at')->readonly()->displayUsing(fn ($d) => $d->format('F j Y h:i A')),
-
-            DateTime::make('Last Traded', function () {
-                return $this->last_traded;
-            })->readonly()->displayUsing(fn ($d) => $d?->format('F j Y h:i A')),
-
-            Money::make('Balance', 'NGN', function () {
-                $wallet = $this->wallets()->where('wallet_currency', 'NGN')->first();
-
-                return $wallet ? $wallet->amount : 0;
-            })->storedInMinorUnits()->readonly(),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', Rules\Password::defaults())
-                ->updateRules('nullable', Rules\Password::defaults()),
-
-            Panel::make('Trades', $this->tradesPanel()),
-
-            HasMany::make('Withdrawals', 'withdrawals'),
-        ];
-    }
-
-    protected function tradesPanel()
-    {
-        return [
-            // HasMany::make('Transactions', 'transactions', Transaction::class),
-        ];
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @return array
-     */
-    public function cards(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @return array
-     */
-    public function filters(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @return array
-     */
-    public function lenses(NovaRequest $request)
-    {
-        return [];
-    }
+    // Inherit fields, cards, filters, lenses from User
 
     /**
      * Get the actions available for the resource.

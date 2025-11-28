@@ -77,8 +77,6 @@ class Kyc extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable()->hideFromIndex(),
-
             BelongsTo::make('Username', 'user', User::class)
                 ->readonly()
                 ->displayUsing(fn ($user) => $user->username),
