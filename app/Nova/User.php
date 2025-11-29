@@ -54,6 +54,7 @@ class User extends Resource
 
     public static $with = ['wallets'];
 
+
     public static function indexQuery(NovaRequest $request, $query)
     {
         $query = parent::indexQuery($request, $query);
@@ -213,12 +214,12 @@ class User extends Resource
     public function actions(NovaRequest $request)
     {
         return [
-            // (new BanUser())->confirmText('Are you sure you want to ban this user?')
-            //     ->confirmButtonText('Yes')
-            //     ->cancelButtonText('No'),
-            // (new UnbanUser)->confirmText('Are you sure you want to unban this user?')
-            //     ->confirmButtonText('Yes')
-            //     ->cancelButtonText('No'),
+            (new BanUser())->confirmText('Are you sure you want to ban this user?')
+                ->confirmButtonText('Yes')
+                ->cancelButtonText('No'),
+            (new UnbanUser)->confirmText('Are you sure you want to unban this user?')
+                ->confirmButtonText('Yes')
+                ->cancelButtonText('No'),
             // (new CreditWallet)->showInline()
             //     ->confirmText('Are you sure you want to credit this user?')
             //     ->confirmButtonText('Yes')

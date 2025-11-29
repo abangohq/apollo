@@ -2,7 +2,7 @@
 
 namespace App\Nova\Actions;
 
-use App\Notifications\SendFirebasePushNotification;
+use App\Notifications\User\AccountSuspensionNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -23,17 +23,11 @@ class UnbanUser extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach ($models as $user) {
-            $user->unban();
+            $user->update(["status" => 'active']);
+            $user->notify(new AccountSuspensionNotification('active'));
         }
 
-        $user->notify(
-            new SendFirebasePushNotification(
-                'Account Unblocked',
-                'Your account has been unblocked. You can now perform transactions.'
-            )
-        );
-
-        return Action::message("$user->name has been unbanned!");
+        return Action::message('User enabled successfully!');
     }
 
     /**
