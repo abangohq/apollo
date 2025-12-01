@@ -3,18 +3,25 @@
 namespace App\Providers;
 
 use App\Nova\AdminUser;
+use App\Nova\AirtimeProduct;
 use App\Nova\ApprovedTrade;
 use App\Nova\Asset;
 use App\Nova\BannedUser;
+use App\Nova\BettingProduct;
+use App\Nova\Bill;
+use App\Nova\CableProduct;
 use App\Nova\CryptoRate;
+use App\Nova\DataProduct;
 use App\Nova\Deposit;
 use App\Nova\GiftcardCategory;
 use App\Nova\Kyc;
+use App\Nova\MeterProduct;
 use App\Nova\PendingTrade;
 use App\Nova\RejectedTrade;
 use App\Nova\Subcategory;
 use App\Nova\Trade;
 use App\Nova\User;
+use App\Nova\WifiProduct;
 use App\Nova\Withdrawal;
 use Bolechen\NovaActivitylog\NovaActivitylog;
 use Bolechen\NovaActivitylog\Resources\Activitylog;
@@ -117,6 +124,25 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ])
                         ->icon('archive')
                         ->collapsable(),
+                MenuSection::resource(Bill::class)
+                    ->icon('clipboard-copy')
+                    ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                MenuSection::make('Bill Products', [
+                    MenuItem::resource(AirtimeProduct::class)
+                        ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                    MenuItem::resource(BettingProduct::class)
+                        ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                    MenuItem::resource(CableProduct::class)
+                        ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                    MenuItem::resource(DataProduct::class)
+                        ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                    MenuItem::resource(MeterProduct::class)
+                        ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                    MenuItem::resource(WifiProduct::class)
+                        ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                ])
+                    ->icon('archive')
+                    ->collapsable(),
 
             ];
         });
