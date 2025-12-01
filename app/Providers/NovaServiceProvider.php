@@ -4,7 +4,10 @@ namespace App\Providers;
 
 use App\Nova\AdminUser;
 use App\Nova\ApprovedTrade;
+use App\Nova\Asset;
 use App\Nova\BannedUser;
+use App\Nova\CryptoRate;
+use App\Nova\Deposit;
 use App\Nova\GiftcardCategory;
 use App\Nova\Kyc;
 use App\Nova\PendingTrade;
@@ -73,6 +76,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ->icon('gift')
                     ->collapsable(),
 
+                MenuSection::resource(Deposit::class)
+                    ->icon('document-report')
+                    ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+
+
                 MenuSection::make('Trades', [
                     MenuItem::resource(ApprovedTrade::class)
                         ->canSee(fn ($request) => $request->user()->user_type === 'admin'),
@@ -101,6 +109,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     // ->withBadge(badgeCallback: fn () => \App\Models\Withdrawal::where([
                     //     ['status', '=', 'pending']
                     // ])->count(), 'danger'),
+                MenuSection::make('Crypto', [
+                        MenuItem::resource(Asset::class)
+                            ->canSee(fn ($request) => $request->user()->user_type === 'admin'),
+                        MenuItem::resource(CryptoRate::class)
+                            ->canSee(fn ($request) => $request->user()->user_type === 'admin' || $request->user()->user_type === 'staff'),
+                    ])
+                        ->icon('archive')
+                        ->collapsable(),
 
             ];
         });

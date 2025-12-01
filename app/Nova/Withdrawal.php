@@ -114,7 +114,10 @@ class Withdrawal extends Resource
                 ])
                  ->readonly(),
             Text::make('reference')->copyable()->readonly(),
-            DateTime::make('Created At')->readonly()->displayUsing(fn ($d) => $d->format('F j Y h:i A')),
+            Stack::make('Created At', [
+                DateTime::make('Date', 'created_at')->readonly()->displayUsing(fn ($value) => $value->format('F j, Y')),
+                DateTime::make('Time', 'created_at')->readonly()->displayUsing(fn ($value) => $value->format('h:i A')),
+            ])->showOnPreview(),
         ];
     }
 

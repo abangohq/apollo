@@ -141,7 +141,10 @@ class User extends Resource
                 ]),
 
 
-            DateTime::make('Date Joined', 'created_at')->readonly()->displayUsing(fn ($d) => $d->format('F j Y h:i A')),
+            Stack::make('Date Joined', [
+                DateTime::make('Date', 'created_at')->readonly()->displayUsing(fn ($value) => $value->format('F j, Y')),
+                DateTime::make('Time', 'created_at')->readonly()->displayUsing(fn ($value) => $value->format('h:i A')),
+            ])->showOnPreview(),
 
             // DateTime::make('Last Traded', function () {
             //     return $this->last_traded;

@@ -95,7 +95,10 @@ class Kyc extends Resource
                     'abandoned' => 'danger',
                 ]),
 
-            DateTime::make('Date', 'created_at')->readonly()->displayUsing(fn ($d) => $d->format('F j Y h:i A')),
+            Stack::make('Created At', [
+                DateTime::make('Date', 'created_at')->readonly()->displayUsing(fn ($value) => $value->format('F j, Y')),
+                DateTime::make('Time', 'created_at')->readonly()->displayUsing(fn ($value) => $value->format('h:i A')),
+            ]),
         ];
     }
 
