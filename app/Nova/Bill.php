@@ -54,14 +54,7 @@ class Bill extends Resource
     public static function indexQuery(NovaRequest $request, $query)
     {
         $query = parent::indexQuery($request, $query);
-        $types = [
-            \App\Models\AirtimeTopUp::class,
-            \App\Models\BettingTopUp::class,
-            \App\Models\CableTopUp::class,
-            \App\Models\DataTopUp::class,
-            \App\Models\MeterTopUp::class,
-            \App\Models\WifiTopUp::class,
-        ];
+        $types = ['airtime', 'betting', 'cable', 'data', 'meter', 'wifi'];
         return $query->whereIn('transaction_type', $types);
     }
 
@@ -105,11 +98,11 @@ class Bill extends Resource
                 ->locale('en')
                 ->readonly(fn () => $this->status !== 'pending')
                 ->sortable(),
-            Text::make('Type', fn () => class_basename($this->transactable))->readonly(),
-            Money::make('Charge', 'NGN', 'charge')
-                ->locale('en')
-                ->readonly(fn () => $this->status !== 'pending')
-                ->sortable(),
+            Text::make('Type', fn () => $this->transaction_type)->readonly(),
+            // Money::make('Charge', 'NGN', 'charge')
+            //     ->locale('en')
+            //     ->readonly(fn () => $this->status !== 'pending')
+            //     ->sortable(),
             Badge::make('Status', fn () => $this->status)
                 ->map([
                     'successful' => 'success',
