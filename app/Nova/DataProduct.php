@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 /**
- * @property \App\Models\DataProduct $resource
+ * @property \App\Models\IspProvider $resource
  * @property mixed $status
  */
 class DataProduct extends Resource

@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 /**
- * @property \App\Models\WifiProduct $resource
+ * @property \App\Models\WifiProvider $resource
  * @property mixed $status
  */
 class WifiProduct extends Resource
