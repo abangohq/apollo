@@ -154,8 +154,8 @@ class AdminUser extends Resource
             (new BanUser)->confirmText('Are you sure you want to ban this user?')
                 ->confirmButtonText('Yes')
                 ->cancelButtonText('No'),
-            (new AssignCategory)
-                ->showInline(),
+            // (new AssignCategory)
+            //     ->showInline(),
         ];
     }
 
@@ -167,7 +167,7 @@ class AdminUser extends Resource
     public static function afterCreate(NovaRequest $request, Model $model)
     {
         $model->email_verified_at = now();
-        $model->user_type = 'admin';
+        $model->user_type = 'staff';
         $model->save();
     }
 }
